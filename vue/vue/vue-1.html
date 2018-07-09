@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{ message }}
+</div>
+<div id="app-2">
+    <span v-bind:title="message">
+        鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+</div>
+<div id="app-3">
+    <span v-if="seen">
+        {{seen}}
+        <span v-html="span1"></span>
+    </span>
+</div>
+<div id="app-4">
+    <ol>
+        <li v-for="todo in todos">
+            {{ todo.text }}
+        </li>
+    </ol>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var cmd="<script>alert('你好，佩奇')<\/script>";
+    var vm = new Vue({
+        el: '#app',
+        //model数据模型
+        data: {
+            message: 'Hello Vue1!'
+        }
+    });
+    var vm2 = new Vue({
+        el:'#app-2',
+        data: {message:'页面加载于 '+new Date().toLocaleString()}
+    });
+    var vm3 = new Vue({
+        el:'#app-3',
+        data: {seen:true,span1:'<script>console.log("fdsfds");<\/script>'}
+    });
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos: [
+                { text: '学习 JavaScript' },
+                { text: '学习 Vue' },
+                { text: '整个牛项目' }
+            ]
+        }
+    })
+
+</script>
+</body>
+</html>
